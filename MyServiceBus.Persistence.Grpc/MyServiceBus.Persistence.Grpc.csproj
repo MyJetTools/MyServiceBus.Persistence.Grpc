@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Version>1.0.1</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MyServiceBus.MessagesCompressor" Version="1.0.0" />
+        <PackageReference Include="protobuf-net" Version="3.0.62" />
+        <PackageReference Include="System.ServiceModel.Primitives" Version="4.8.0" />
+    </ItemGroup>    
+
+</Project>
