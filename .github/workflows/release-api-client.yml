@@ -20,8 +20,8 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release      
       
-    - name: Create the package - Client
-      run: dotnet pack --configuration Release MyServiceBus.Persistence.Grpc/MyServiceBus.Persistence.Grpc.csproj /p:Version=${GITHUB_REF#refs/tags/Client-}
+    - name: Create the package
+      run: dotnet pack --configuration Release MyServiceBus.Persistence.Grpc/MyServiceBus.Persistence.Grpc.csproj /p:Version=${GITHUB_REF#refs/tags/}
 
-    - name: Publish the package to GPR - Client
+    - name: Publish the packaget
       run: dotnet nuget push MyServiceBus.Persistence.Grpc/bin/Release/*.nupkg -s "https://api.nuget.org/v3/index.json" -k ${{ secrets.NUGET_TOCKEN }}
