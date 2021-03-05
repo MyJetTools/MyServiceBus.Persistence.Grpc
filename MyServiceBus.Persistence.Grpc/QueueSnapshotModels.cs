@@ -2,6 +2,13 @@ using System.Runtime.Serialization;
 
 namespace MyServiceBus.Persistence.Grpc
 {
+    
+    public enum QueueTypePersistenceGrpcEnum
+    {
+        Permanent, AutoDelete, PermanentWithSingleConnection
+    }
+
+    
 
     [DataContract]
     public class QueueIndexRangeGrpcModel
@@ -21,6 +28,10 @@ namespace MyServiceBus.Persistence.Grpc
         
         [DataMember(Order = 2)]
         public QueueIndexRangeGrpcModel[] Ranges { get; set; }
+        
+        [DataMember(Order = 3)]
+        public QueueTypePersistenceGrpcEnum QueueType { get; set; }
+
     }
     
     [DataContract]
