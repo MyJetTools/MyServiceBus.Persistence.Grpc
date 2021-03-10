@@ -5,6 +5,18 @@ namespace MyServiceBus.Persistence.Grpc
 {
 
     [DataContract]
+    public class MessageContentMetaDataItem
+    {
+        [DataMember(Order = 1)]
+        public string Key { get; set; }
+
+        [DataMember(Order = 2)]
+        public string Value { get; set; }
+
+    }
+    
+
+    [DataContract]
     public class MessageContentGrpcModel
     {
         [DataMember(Order = 1)]
@@ -15,6 +27,9 @@ namespace MyServiceBus.Persistence.Grpc
         
         [DataMember(Order = 3)]
         public byte[] Data { get; set; }
+        
+        [DataMember(Order = 4)]
+        public MessageContentMetaDataItem[] MetaData { get; set; }
         
     }
 }
