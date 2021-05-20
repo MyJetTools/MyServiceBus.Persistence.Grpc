@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MyServiceBus.MessagesCompressor" Version="1.0.1" />
-        <PackageReference Include="protobuf-net" Version="3.0.73" />
+        <PackageReference Include="MyServiceBus.MessagesCompressor" Version="1.0.2" />
+        <PackageReference Include="protobuf-net" Version="3.0.101" />
         <PackageReference Include="System.ServiceModel.Primitives" Version="4.8.1" />
     </ItemGroup>    
 
