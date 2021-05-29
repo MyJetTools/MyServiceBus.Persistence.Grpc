@@ -9,7 +9,7 @@ namespace MyServiceBus.Persistence.Grpc
     public static class CompressUtils
     {
 
-        public static IAsyncEnumerable<byte[]> CompressAndSplitAsync(this object contract, int packetSize)
+        public static IAsyncEnumerable<CompressedMessageChunkModel> CompressAndSplitAsync(this object contract, int packetSize)
         {
             var stream = new MemoryStream();
             ProtoBuf.Serializer.Serialize(stream, contract);
@@ -21,7 +21,7 @@ namespace MyServiceBus.Persistence.Grpc
             return compressedData.BatchItAsync(packetSize);
         }
 
-        public static async Task<T> DecompressAndMerge<T>(this IAsyncEnumerable<byte[]> payLoadAsync)
+        public static async Task<T> DecompressAndMerge<T>(this IAsyncEnumerable<CompressedMessageChunkModel> payLoadAsync)
         {
             var compressedData = await payLoadAsync.CombineItAsync();
 

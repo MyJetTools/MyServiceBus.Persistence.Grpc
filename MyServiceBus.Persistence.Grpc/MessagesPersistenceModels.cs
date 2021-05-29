@@ -32,4 +32,12 @@ namespace MyServiceBus.Persistence.Grpc
         public MessageContentMetaDataItem[] MetaData { get; set; }
         
     }
+
+    [DataContract]
+    public class CompressedMessageChunkModel
+    {
+        [DataMember(Order = 1)]
+        public byte[] Chunk { get; set; }
+        
+    }
 }

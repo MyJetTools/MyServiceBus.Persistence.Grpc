@@ -7,7 +7,7 @@ namespace MyServiceBus.Persistence.Grpc
 {
     public static class BatchingUtils
     {
-        public static async IAsyncEnumerable<byte[]> BatchItAsync(this ValueTask<ReadOnlyMemory<byte>> srcAsync, int batchSize)
+        public static async IAsyncEnumerable<CompressedMessageChunkModel> BatchItAsync(this ValueTask<ReadOnlyMemory<byte>> srcAsync, int batchSize)
         {
 
             var src = await srcAsync;
@@ -18,7 +18,10 @@ namespace MyServiceBus.Persistence.Grpc
             while (remains>0)
             {
                 var chunkSize = remains > batchSize ? batchSize : remains;
-                yield return  src.Slice(position, chunkSize).ToArray();
+                yield return new CompressedMessageChunkModel
+                {
+                    Chunk = src.Slice(position, chunkSize).ToArray()
+                };
 
                 position += chunkSize;
                 remains -= chunkSize;
@@ -26,13 +29,13 @@ namespace MyServiceBus.Persistence.Grpc
         }
 
 
-        public static async ValueTask<ReadOnlyMemory<byte>> CombineItAsync(this IAsyncEnumerable<byte[]> payLoadAsync)
+        public static async ValueTask<ReadOnlyMemory<byte>> CombineItAsync(this IAsyncEnumerable<CompressedMessageChunkModel> payLoadAsync)
         {
             var result = new MemoryStream();
 
             await foreach (var payLoad in payLoadAsync)
             {
-                result.Write(payLoad);
+                result.Write(payLoad.Chunk);
             }
 
             var buffer = result.GetBuffer();

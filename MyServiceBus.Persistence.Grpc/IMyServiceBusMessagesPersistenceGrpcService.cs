@@ -10,10 +10,10 @@ namespace MyServiceBus.Persistence.Grpc
     public interface IMyServiceBusMessagesPersistenceGrpcService
     {
         [OperationContract(Action = "GetPageCompressed")]
-        IAsyncEnumerable<byte[]> GetPageCompressedAsync(GetMessagesPageGrpcRequest request);
+        IAsyncEnumerable<CompressedMessageChunkModel> GetPageCompressedAsync(GetMessagesPageGrpcRequest request);
 
         [OperationContract(Action = "SaveMessages")]
-        ValueTask SaveMessagesAsync(IAsyncEnumerable<byte[]> request);
+        ValueTask SaveMessagesAsync(IAsyncEnumerable<CompressedMessageChunkModel> request);
 
         [OperationContract(Action = "GetMessage")]
         ValueTask<MessageContentGrpcModel> GetMessageAsync(GetMessageGrpcRequest request);
