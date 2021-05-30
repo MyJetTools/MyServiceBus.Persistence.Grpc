@@ -6,7 +6,7 @@ namespace MyServiceBus.Persistence.Grpc
 {
 
 
-    [ServiceContract(Name = "IMyServiceBusMessagesPersistenceGrpcService")]
+    [ServiceContract(Name = "persistence.MyServiceBusMessagesPersistenceGrpcService")]
     public interface IMyServiceBusMessagesPersistenceGrpcService
     {
         [OperationContract(Action = "GetPageCompressed")]
