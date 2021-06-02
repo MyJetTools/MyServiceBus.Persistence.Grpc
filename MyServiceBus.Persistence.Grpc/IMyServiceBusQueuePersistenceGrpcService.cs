@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace MyServiceBus.Persistence.Grpc
 {
     
-    [ServiceContract(Name = "persistence.MyServiceBusQueuePersistenceGrpcService")]
+    [ServiceContract(Name = "MyServiceBusQueuePersistenceGrpcService")]
     public interface IMyServiceBusQueuePersistenceGrpcService
     {
         [OperationContract(Action = "SaveSnapshot")] 
