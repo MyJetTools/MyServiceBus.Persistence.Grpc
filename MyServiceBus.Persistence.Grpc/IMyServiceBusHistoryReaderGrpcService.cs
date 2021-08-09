@@ -15,7 +15,7 @@ namespace MyServiceBus.Persistence.Grpc
         public DateTime FromDateTime { get; set; }
     }
     
-    [ServiceContract(Name = "MyServiceBusHistoryReaderGrpcService")]
+    [ServiceContract(Name = "persistence.MyServiceBusHistoryReaderGrpcService")]
     public interface IMyServiceBusHistoryReaderGrpcService
     {
         [OperationContract(Action = "GetByDate")]
